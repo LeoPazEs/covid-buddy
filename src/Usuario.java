@@ -24,10 +24,9 @@ public class Usuario implements ValidarUsuario{
     }
     
     public void setCpf(String cpf) { 
-        if (validarCpf(cpf))
+        if (!validarCpf(cpf))
+            throw new IllegalArgumentException("CPF inválido.");
         this.cpf = cpf;
-        else 
-        throw new IllegalArgumentException("CPF inválido.");
     }
     
     public String getSenha() {
@@ -44,10 +43,10 @@ public class Usuario implements ValidarUsuario{
     
     
     public void setNome(String nome) {
-        if(validarNome(nome))
-        this.nome = nome; 
-        else 
-        throw new IllegalArgumentException("Nome inválido.");
+        if(!validarNome(nome))
+            throw new IllegalArgumentException("Nome inválido.");
+        
+        this.nome = nome;  
     }
     
     
@@ -56,10 +55,9 @@ public class Usuario implements ValidarUsuario{
     }
     
     public void setDataNascimento(LocalDate dataNascimento) {
-        if (validarDataNascimento(dataNascimento))
+        if (!validarDataNascimento(dataNascimento))
+            throw new IllegalArgumentException("Data de nascimento inválida.");
         this.dataNascimento = dataNascimento; 
-        else
-        throw new IllegalArgumentException("Data de nascimento inválida.");
     }
     
     public String getTelefone() {
@@ -67,10 +65,9 @@ public class Usuario implements ValidarUsuario{
     }
 
     public void setTelefone(String telefone) {
-        if(validarTelefone(telefone))
-        this.telefone = telefone; 
-        else 
-        throw new IllegalArgumentException("Telefone inválido.");
+        if(!validarTelefone(telefone))
+            throw new IllegalArgumentException("Telefone inválido.");
+        this.telefone = telefone;  
     }
     
     public String getSexo() {

@@ -24,10 +24,10 @@ public class Endereco implements ValidarEndereco{
     }
     
     public void setCep(String cep) {
-        if (validarCep(cep))
-        this.cep = cep; 
-        else 
-        throw new IllegalArgumentException("CEP inválido.");
+        if (!validarCep(cep))
+            throw new IllegalArgumentException("CEP inválido.");
+        
+        this.cep = cep;  
     }
     
     public Integer getNumero() {
