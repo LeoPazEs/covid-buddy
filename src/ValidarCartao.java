@@ -2,10 +2,10 @@ import java.time.LocalDate;
 import java.time.YearMonth;
 
 public interface ValidarCartao {
-    static String validarNumero(String numero, String validadorRegex){ 
+    default boolean validarNumero(String numero, String validadorRegex){ 
         numero = numero.replaceAll("[^\\d.]|\\.","");
         if(!numero.matches(validadorRegex)){
-            throw new IllegalArgumentException("Número inválido.");
+            return false;
         }
 
         Integer somaPar = 0; 
@@ -20,9 +20,9 @@ public interface ValidarCartao {
             somaImpar += numero.charAt(i + 1) - '0';
         } 
         if ((somaImpar + somaPar) % 10 != 0) 
-            throw new IllegalArgumentException("Número inválido.");
-            
-        return numero;     
+            return false;
+
+        return true;     
     } 
 
     default boolean validarValidade(YearMonth validade){

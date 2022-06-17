@@ -7,10 +7,13 @@ public abstract class Cartao implements ValidarCartao{
     private Integer codigo; 
     private String nome; 
     private YearMonth validade;
+    protected String validadorRegex;
     
-    public Cartao(Paciente paciente,String numero, Integer codigo, String nome, YearMonth validade) {
+    
+    public Cartao(Paciente paciente,String numero, Integer codigo, String nome, YearMonth validade, String validadorRegex) {
+        this.validadorRegex = validadorRegex;
         this.paciente = paciente;
-        this.numero = numero;
+        setNumero(numero);
         this.codigo = codigo;
         this.nome = nome;
         setValidade(validade);
@@ -23,7 +26,11 @@ public abstract class Cartao implements ValidarCartao{
     public String getNumero() {
         return numero;
     }
+
     public void setNumero(String numero) {
+        if (!validarNumero(numero, validadorRegex))
+            throw new IllegalArgumentException("Número inválido.");
+
         this.numero = numero;
     }
 
@@ -44,10 +51,15 @@ public abstract class Cartao implements ValidarCartao{
     public YearMonth getValidade() {
         return validade;
     }
+
     public void setValidade(YearMonth validade) {
         if (validarValidade(validade))
             this.validade = validade; 
         else 
         throw new IllegalArgumentException("Validade inválida.");
-    }  
+    }    
+        
+    public void setValidadorRegex(String validadorRegex) {
+        this.validadorRegex = validadorRegex;
+    }    
 }
