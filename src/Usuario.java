@@ -9,7 +9,6 @@ public class Usuario {
     private LocalDate dataNascimento; 
     private String telefone; 
     private String sexo;
-    private Endereco endereco;
     
     
     public Usuario(String cpf, String senha, String nome, LocalDate dataNascimento, String telefone, String sexo) {
@@ -20,11 +19,6 @@ public class Usuario {
         setTelefone(telefone); 
         this.sexo = sexo;
     }  
-
-    public Usuario(String cpf, String senha, String nome, LocalDate dataNascimento, String telefone, String sexo, Endereco endereco) {
-        this(cpf, senha, nome, dataNascimento, telefone, sexo);
-        this.endereco = endereco;
-    }
     
     
     public String getCpf() {
@@ -87,15 +81,6 @@ public class Usuario {
     
     public void setSexo(String sexo) {
         this.sexo = sexo;
-    }
-
-    public Endereco getEndereco() {
-        return endereco;
-    }
-
-
-    public void setEndereco(Endereco endereco) {
-        this.endereco = endereco;
     }
     
     private boolean validarCpf(String cpf){

@@ -12,7 +12,7 @@ public class EnderecoTest {
 
         cepInvalido = Assertions.assertThrows(IllegalArgumentException.class, () -> new Endereco("57051-1190", 384, "Ap 1111 Bloco 2", "Maceió", "Alagoas", "Ao lado do marista", "Av Governador"));
         Assertions.assertEquals( "CEP inválido.", cepInvalido.getMessage());  
-
+        
         new Endereco("57051-190", 384, "Ap 1111 Bloco 2", "Maceió", "Alagoas", "Ao lado do marista", "Av Governador");
     }
 }
