@@ -46,7 +46,13 @@ public class UsuarioTest {
     public void criandoUsuarioDataNascimentoInvalido(){
         Throwable nomeInvalido = Assertions.assertThrows(IllegalArgumentException.class, () -> new Usuario("529.982.247-25", "12345", "Leonardo Paz Estevam",  LocalDate.of(LocalDate.now().getYear(), 4, 5), "(82)99919-2696", "Masculino"));
         Assertions.assertEquals( "Data de nascimento inválida.", nomeInvalido.getMessage()); 
-        
+
         new Usuario("529.982.247-25", "12345", "Leonardo Paz Estevam",  LocalDate.of(2001, 4, 5), "(82)99919-2696", "Masculino");
-    } 
+    }  
+
+    @Test 
+    public void criandoUsuarioComEndeco(){
+        Endereco endereco = new Endereco("57051-190", 384, "Ap 1111 Bloco 2", "Maceió", "Alagoas", "Ao lado do marista", "Av Governador");
+        new Usuario("529.982.247-25", "12345", "Leonardo Paz Estevam",  LocalDate.of(2001, 4, 5), "(82)99919-2696", "Masculino", endereco);
+    }
 }

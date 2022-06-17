@@ -9,6 +9,8 @@ public class Usuario {
     private LocalDate dataNascimento; 
     private String telefone; 
     private String sexo;
+    private Endereco endereco;
+    
     
     public Usuario(String cpf, String senha, String nome, LocalDate dataNascimento, String telefone, String sexo) {
         setCpf(cpf);
@@ -17,7 +19,12 @@ public class Usuario {
         setDataNascimento(dataNascimento); 
         setTelefone(telefone); 
         this.sexo = sexo;
-    } 
+    }  
+
+    public Usuario(String cpf, String senha, String nome, LocalDate dataNascimento, String telefone, String sexo, Endereco endereco) {
+        this(cpf, senha, nome, dataNascimento, telefone, sexo);
+        this.endereco = endereco;
+    }
     
     
     public String getCpf() {
@@ -42,7 +49,8 @@ public class Usuario {
     public String getNome() {
         return nome;
     }
-
+    
+    
     public void setNome(String nome) {
         if(validarNome(nome))
         this.nome = nome; 
@@ -61,7 +69,7 @@ public class Usuario {
         else
         throw new IllegalArgumentException("Data de nascimento inválida.");
     }
-
+    
     public String getTelefone() {
         return telefone;
     }
@@ -81,6 +89,15 @@ public class Usuario {
         this.sexo = sexo;
     }
 
+    public Endereco getEndereco() {
+        return endereco;
+    }
+
+
+    public void setEndereco(Endereco endereco) {
+        this.endereco = endereco;
+    }
+    
     private boolean validarCpf(String cpf){
         cpf = cpf.replaceAll("[^\\d.]|\\.","");  
         
