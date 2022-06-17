@@ -1,4 +1,4 @@
-public class Endereco {
+public class Endereco implements ValidarEndereco{
     private String cep; 
     private Integer numero; 
     private String complemento; 
@@ -76,9 +76,5 @@ public class Endereco {
     
     public void setLogradouro(String logradouro) {
         this.logradouro = logradouro;
-    }
-    
-    private boolean validarCep(String cep){ 
-        return cep.matches("^\\d{5}-\\d{3}$");
     }
 }
