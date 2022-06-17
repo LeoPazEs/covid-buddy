@@ -1,9 +1,10 @@
 public class Sintoma {
-    private Usuario usuario;
+    private Paciente usuario;
+    
     private String sintoma; 
     private char gravidade;
     
-    public Sintoma(Usuario usuario, String sintoma, char gravidade) {
+    public Sintoma(Paciente usuario, String sintoma, char gravidade) {
         this.usuario = usuario;
         this.sintoma = sintoma;
         setGravidade(Character.toUpperCase(gravidade));
@@ -12,7 +13,7 @@ public class Sintoma {
     public String getSintoma() {
         return sintoma;
     }
-
+    
     public void setSintoma(String sintoma) {
         this.sintoma = sintoma;
     }
@@ -27,7 +28,7 @@ public class Sintoma {
         else
         throw new IllegalArgumentException("Gravidade inválida.");
     }
-
+    
     public Usuario getUsuario() {
         return usuario;
     }
