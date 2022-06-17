@@ -15,4 +15,5 @@ bin/
 test/resources/projects/**/.vscode
 test/resources/projects/maven/salut/testGradle 
 .vscode
-test-lib
+test-lib 
+lib
