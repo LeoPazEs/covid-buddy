@@ -10,13 +10,14 @@ public class Endereco {
     
     
     public Endereco(String cep, Integer numero, String complemento, String cidade, String estado, String referencia, String logradouro) {
-        setCep(cep);
+        this.cep = cep;
         this.numero = numero;
         this.complemento = complemento;
         this.cidade = cidade;
         this.estado = estado;
         this.referencia = referencia; 
         this.logradouro = logradouro;
+        validar();
     }
     
     public String getCep() {
@@ -24,9 +25,6 @@ public class Endereco {
     }
     
     public void setCep(String cep) {
-        if (!validarCep(cep))
-            throw new IllegalArgumentException("CEP inválido.");
-        
         this.cep = cep;  
     }
     
@@ -78,7 +76,8 @@ public class Endereco {
         this.logradouro = logradouro;
     } 
 
-    private boolean validarCep(String cep){ 
-        return cep.matches("^\\d{5}-\\d{3}$");
+    private void validar(){
+        if (!Validador.cep(cep))
+            throw new IllegalArgumentException("CEP inválido.");
     }
 }

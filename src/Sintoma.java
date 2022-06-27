@@ -7,7 +7,8 @@ public class Sintoma {
     public Sintoma(Paciente usuario, String sintoma, char gravidade) {
         this.usuario = usuario;
         this.sintoma = sintoma;
-        setGravidade(Character.toUpperCase(gravidade));
+        this.gravidade = Character.toUpperCase(gravidade);
+        validar();
     }
     
     public String getSintoma() {
@@ -23,20 +24,15 @@ public class Sintoma {
     }
     
     public void setGravidade(char gravidade) {
-        if (validarGravidade(gravidade))
-        this.gravidade = gravidade; 
-        else
-        throw new IllegalArgumentException("Gravidade inválida.");
+        this.gravidade = Character.toUpperCase(gravidade);
     }
     
     public Usuario getUsuario() {
         return usuario;
     }
 
-    private boolean validarGravidade(char gravidade) {
-        if (gravidade != 'G' && gravidade != 'L')
-            return false;
-    
-        return true;
+    private void validar(){
+        if (!Validador.gravidade(gravidade))
+            throw new IllegalArgumentException("Gravidade inválida.");
     }
 }
