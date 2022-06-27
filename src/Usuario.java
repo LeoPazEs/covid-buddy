@@ -10,12 +10,13 @@ public class Usuario {
     
     
     public Usuario(String cpf, String senha, String nome, LocalDate dataNascimento, String telefone, String sexo) {
-        setCpf(cpf);
+        this.cpf = cpf;
         this.senha = senha; 
-        setNome(nome); 
-        setDataNascimento(dataNascimento); 
-        setTelefone(telefone); 
+        this.nome = nome; 
+        this.dataNascimento = dataNascimento; 
+        this.telefone = telefone; 
         this.sexo = sexo;
+        validar();
     }  
     
     
@@ -24,8 +25,6 @@ public class Usuario {
     }
     
     public void setCpf(String cpf) { 
-        if (!Validador.cpf(cpf))
-            throw new IllegalArgumentException("CPF inválido.");
         this.cpf = cpf;
     }
     
@@ -41,22 +40,15 @@ public class Usuario {
         return nome;
     }
     
-    
-    public void setNome(String nome) {
-        if(!Validador.nome(nome))
-            throw new IllegalArgumentException("Nome inválido.");
-        
+    public void setNome(String nome) {        
         this.nome = nome;  
     }
-    
-    
+
     public LocalDate getDataNascimento() {
         return dataNascimento;
     }
     
     public void setDataNascimento(LocalDate dataNascimento) {
-        if (!Validador.dataNascimento(dataNascimento))
-            throw new IllegalArgumentException("Data de nascimento inválida.");
         this.dataNascimento = dataNascimento; 
     }
     
@@ -65,8 +57,6 @@ public class Usuario {
     }
 
     public void setTelefone(String telefone) {
-        if(!Validador.telefone(telefone))
-            throw new IllegalArgumentException("Telefone inválido.");
         this.telefone = telefone;  
     }
     
@@ -76,5 +66,19 @@ public class Usuario {
     
     public void setSexo(String sexo) {
         this.sexo = sexo;
+    } 
+
+    private void validar(){
+        if(!Validador.telefone(telefone))
+            throw new IllegalArgumentException("Telefone inválido.");
+
+        if (!Validador.dataNascimento(dataNascimento))
+            throw new IllegalArgumentException("Data de nascimento inválida.");
+
+        if(!Validador.nome(nome))
+            throw new IllegalArgumentException("Nome inválido.");
+
+        if (!Validador.cpf(cpf))
+            throw new IllegalArgumentException("CPF inválido.");
     }
 }
