@@ -1,6 +1,6 @@
 import java.time.LocalDate;
 
-public class Usuario {
+public abstract class Usuario extends Modelo{
     private String cpf;
     private String senha;
     private String nome; 
@@ -9,16 +9,28 @@ public class Usuario {
     private String sexo;
     
     
-    public Usuario(String cpf, String senha, String nome, LocalDate dataNascimento, String telefone, String sexo) {
+    public Usuario(long id, String cpf, String senha, String nome, LocalDate dataNascimento, String telefone,
+            String sexo) {
+        super(id);
         this.cpf = cpf;
-        this.senha = senha; 
-        this.nome = nome; 
-        this.dataNascimento = dataNascimento; 
-        this.telefone = telefone; 
+        this.senha = senha;
+        this.nome = nome;
+        this.dataNascimento = dataNascimento;
+        this.telefone = telefone;
+        this.sexo = sexo;
+    }
+
+
+    public Usuario(String cpf, String senha, String nome, LocalDate dataNascimento, String telefone, String sexo) {
+        super();
+        this.cpf = cpf;
+        this.senha = senha;
+        this.nome = nome;
+        this.dataNascimento = dataNascimento;
+        this.telefone = telefone;
         this.sexo = sexo;
         validar();
-    }  
-    
+    }
     
     public String getCpf() {
         return cpf;

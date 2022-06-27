@@ -1,25 +1,25 @@
-public class Sintoma {
+public class Sintoma extends Modelo{
     private Paciente usuario;
     
-    private String sintoma; 
+    private String nome; 
     private char gravidade;
     
-    public Sintoma(Paciente usuario, String sintoma, char gravidade) {
+    public Sintoma(Paciente usuario, String nome, char gravidade) {
         this.usuario = usuario;
-        this.sintoma = sintoma;
+        this.nome = nome;
         this.gravidade = Character.toUpperCase(gravidade);
         validar();
     }
     
-    public String getSintoma() {
-        return sintoma;
+    public String getNome() {
+        return nome;
     }
     
-    public void setSintoma(String sintoma) {
-        this.sintoma = sintoma;
+    public void setNome(String nome) {
+        this.nome = nome;
     }
     
-    public char getGravidade() {
+    public Character getGravidade() {
         return gravidade;
     }
     

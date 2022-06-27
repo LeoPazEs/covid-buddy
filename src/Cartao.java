@@ -1,26 +1,27 @@
 import java.time.YearMonth;
 
-public abstract class Cartao {
-    private Paciente paciente;
+public abstract class Cartao extends Modelo{
+    private Paciente pacienteId;
     private String numero; 
-    private Integer codigo; 
+    private String codigo; 
     private String nome; 
     private YearMonth validade;
     private String validadorRegex;
     
     
-    public Cartao(Paciente paciente,String numero, Integer codigo, String nome, YearMonth validade, String validadorRegex) {
+    
+    public Cartao(Paciente paciente,String numero, String codigo, String nome, YearMonth validade, String validadorRegex) {
         this.validadorRegex = validadorRegex;
-        this.paciente = paciente;
+        this.pacienteId = paciente;
         this.numero = numero;
         this.codigo = codigo;
         this.nome = nome;
         this.validade = validade;  
         validar();
     }
-    
-    public Paciente getPaciente() {
-        return paciente;
+
+    public Paciente getPacienteId() {
+        return pacienteId;
     }
 
     public String getNumero() {
@@ -31,10 +32,10 @@ public abstract class Cartao {
         this.numero = numero;
     }
 
-    public Integer getCodigo() {
+    public String getCodigo() {
         return codigo;
     }
-    public void setCodigo(Integer codigo) {
+    public void setCodigo(String codigo) {
         this.codigo = codigo;
     }
 

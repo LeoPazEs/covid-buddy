@@ -1,4 +1,6 @@
-public class Endereco {
+public class Endereco extends Modelo {
+    private Usuario usuario;
+    
     private String cep; 
     private Integer numero; 
     private String complemento; 
@@ -7,9 +9,8 @@ public class Endereco {
     private String referencia;
     private String logradouro;
     
-    
-    
-    public Endereco(String cep, Integer numero, String complemento, String cidade, String estado, String referencia, String logradouro) {
+    public Endereco(Usuario usuario, String cep, Integer numero, String complemento, String cidade, String estado, String referencia, String logradouro) {
+        this.usuario = usuario;
         this.cep = cep;
         this.numero = numero;
         this.complemento = complemento;
@@ -20,6 +21,14 @@ public class Endereco {
         validar();
     }
     
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
+
     public String getCep() {
         return cep;
     }
