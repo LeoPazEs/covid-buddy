@@ -12,14 +12,26 @@ public abstract class Cartao extends Modelo{
     
     
     
-    public Cartao(Paciente paciente,String numero, String codigo, String nome, YearMonth validade, String validadorRegex) {
-        // Com isso eu forço a implementação do validador regex nas classes que extends cartão, mas eu gostaria de não deixar o validador no Objeto. 
-        this.validadorRegex = validadorRegex;
-        this.pacienteId = paciente;
+    public Cartao(long id, Paciente pacienteId, String numero, String codigo, String nome, YearMonth validade,
+            String validadorRegex) {
+        super(id);
+        this.pacienteId = pacienteId;
         this.numero = numero;
         this.codigo = codigo;
         this.nome = nome;
-        this.validade = validade;  
+        this.validade = validade;
+        this.validadorRegex = validadorRegex;
+        validar();
+    }
+
+    public Cartao(Paciente pacienteId, String numero, String codigo, String nome, YearMonth validade,
+            String validadorRegex) {
+        this.pacienteId = pacienteId;
+        this.numero = numero;
+        this.codigo = codigo;
+        this.nome = nome;
+        this.validade = validade;
+        this.validadorRegex = validadorRegex;
         validar();
     }
 

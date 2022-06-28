@@ -79,7 +79,40 @@ public class CartaoTest {
         Assertions.assertEquals("4242 4242 4242 4242", result.getString("numero"));
         Assertions.assertEquals("342", result.getString("codigo"));
         Assertions.assertEquals("Cartão Débito", result.getString("nome")); 
-        Assertions.assertEquals(YearMonth.from(LocalDate.now().plusMonths(1)).toString(), result.getString("validade")); 
-    } 
+        Assertions.assertEquals(YearMonth.from(LocalDate.now().plusMonths(1)).toString(), result.getString("validade"));  
+
+        System.out.println(Visa.select());
+    }  
+
+    @Test
+    public void selectVisaMastercard(){
+        Paciente paciente = new Paciente("529.982.247-25", "12345", "Leonardo Paz Estevam",  LocalDate.of(2001, 4, 5), "(82)99919-2696", "Masculino"); 
+        paciente.save();
+
+        Visa visa = new Visa(paciente, "4242 4242 4242 4242", "342", "Cartão Débito", YearMonth.from(LocalDate.now().plusMonths(1))); 
+        visa.save();
+
+        Visa visa2 = new Visa(paciente, "4242 4242 4242 4242", "342", "Cartão Crédito", YearMonth.from(LocalDate.now().plusMonths(1))); 
+        visa2.save(); 
+
+        MasterCard masterCard = new MasterCard(paciente, "5555 5555 5555 4444", "342", "Leonardo Paz Estevam", YearMonth.from(LocalDate.now().plusMonths(1)));
+        masterCard.save();
+
+        Assertions.assertEquals(2, Visa.select().size()); 
+
+        Visa visaFromSelect = Visa.select("nome = 'Cartão Débito' ").get(0); 
+        Assertions.assertEquals(visa.getId(), visaFromSelect.getId());
+        Assertions.assertEquals(visa.getNumero(), visaFromSelect.getNumero());
+        Assertions.assertEquals(visa.getCodigo(), visaFromSelect.getCodigo());
+        Assertions.assertEquals(visa.getNome(), visaFromSelect.getNome());
+        Assertions.assertEquals(visa.getValidade(), visaFromSelect.getValidade());  
+
+        MasterCard masterCardFromSelect  = MasterCard.select().get(0); 
+        Assertions.assertEquals(masterCard.getId(), masterCardFromSelect.getId());
+        Assertions.assertEquals(masterCard.getNumero(), masterCardFromSelect.getNumero());
+        Assertions.assertEquals(masterCard.getCodigo(), masterCardFromSelect.getCodigo());
+        Assertions.assertEquals(masterCard.getNome(), masterCardFromSelect.getNome());
+        Assertions.assertEquals(masterCard.getValidade(), masterCardFromSelect.getValidade());  
+    }
 
 }
