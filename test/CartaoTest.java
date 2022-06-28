@@ -37,7 +37,6 @@ public class CartaoTest {
 
         numeroInvalido = Assertions.assertThrows(IllegalArgumentException.class, () -> new Visa(paciente, "4244 4242 4242 4242", "342", "Leonardo Paz Estevam", YearMonth.from(LocalDate.now().plusMonths(1))));
         Assertions.assertEquals( "Número inválido.", numeroInvalido.getMessage());
-        
     }
 
     @Test 
@@ -69,7 +68,7 @@ public class CartaoTest {
         Paciente paciente = new Paciente("529.982.247-25", "12345", "Leonardo Paz Estevam",  LocalDate.of(2001, 4, 5), "(82)99919-2696", "Masculino"); 
         paciente.save();
         Visa visa = new Visa(paciente, "4242 4242 4242 4242", "342", "Cartão Débito", YearMonth.from(LocalDate.now().plusMonths(1))); 
-        visa.save(); 
+        visa.save();
         
         ResultSet result = conexaoBanco.executeResultSet("SELECT COUNT(*) AS total FROM visa"); 
         Assertions.assertEquals(1, result.getInt("total"));

@@ -1,5 +1,7 @@
 import java.time.YearMonth;
 
+
+
 public abstract class Cartao extends Modelo{
     private Paciente pacienteId;
     private String numero; 
@@ -11,6 +13,7 @@ public abstract class Cartao extends Modelo{
     
     
     public Cartao(Paciente paciente,String numero, String codigo, String nome, YearMonth validade, String validadorRegex) {
+        // Com isso eu forço a implementação do validador regex nas classes que extends cartão, mas eu gostaria de não deixar o validador no Objeto. 
         this.validadorRegex = validadorRegex;
         this.pacienteId = paciente;
         this.numero = numero;

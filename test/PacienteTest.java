@@ -86,6 +86,27 @@ public class PacienteTest {
         Assertions.assertEquals(paciente.getDataNascimento().toString(), result.getString("dataNascimento")); 
         Assertions.assertEquals(paciente.getSexo(), result.getString("sexo")); 
         Assertions.assertEquals(paciente.getTelefone(), result.getString("telefone")); 
+    } 
+
+    @Test
+    public void select(){
+        Paciente paciente = new Paciente("529.982.247-25", "12345", "Leonardo Paz Estevam",  LocalDate.of(2001, 4, 5), "(82)99919-2696", "Masculino"); 
+        paciente.save();
+
+        Paciente paciente2 = new Paciente("529.982.247-25", "12345", "Valdemiro Santiago",  LocalDate.of(2001, 4, 5), "(82)99919-2696", "Masculino"); 
+        paciente2.save(); 
+
+        Assertions.assertEquals(2, Paciente.select().size()); 
+
+        Paciente pacienteFromSelect = Paciente.select("nome = 'Leonardo Paz Estevam' ").get(0); 
+
+        Assertions.assertEquals(paciente.getId(), pacienteFromSelect.getId());
+        Assertions.assertEquals(paciente.getCpf(), pacienteFromSelect.getCpf());
+        Assertions.assertEquals(paciente.getSenha(), pacienteFromSelect.getSenha());
+        Assertions.assertEquals(paciente.getNome(), pacienteFromSelect.getNome());
+        Assertions.assertEquals(paciente.getDataNascimento(), pacienteFromSelect.getDataNascimento()); 
+        Assertions.assertEquals(paciente.getSexo(), pacienteFromSelect.getSexo()); 
+        Assertions.assertEquals(paciente.getTelefone(), pacienteFromSelect.getTelefone()); 
 
     }
 
