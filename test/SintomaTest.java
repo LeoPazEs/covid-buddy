@@ -55,4 +55,24 @@ public class SintomaTest {
         Assertions.assertEquals(sintoma.getNome(), result.getString("nome"));
         Assertions.assertEquals(sintoma.getGravidade().toString(), result.getString("gravidade"));        
     }
+
+    @Test
+    public void select(){
+        Paciente paciente = new Paciente("529.982.247-25", "12345", "Leonardo Paz Estevam",  LocalDate.of(2001, 4, 5), "(82)99919-2696", "Masculino"); 
+        paciente.save();
+
+        Sintoma sintoma = new Sintoma(paciente, "Tosse", 'G');
+        sintoma.save(); 
+
+        Sintoma sintoma2 = new Sintoma(paciente, "Coriza", 'l');
+        sintoma2.save(); 
+
+        Assertions.assertEquals(2, Sintoma.select().size()); 
+
+        Sintoma sintomaFromSelect = Sintoma.select("nome = 'Coriza' ").get(0); 
+
+        Assertions.assertEquals(sintoma2.getId(), sintomaFromSelect.getId());
+        Assertions.assertEquals(sintoma2.getNome(), sintomaFromSelect.getNome());
+        Assertions.assertEquals(sintoma2.getGravidade(), sintomaFromSelect.getGravidade());
+    }
 }

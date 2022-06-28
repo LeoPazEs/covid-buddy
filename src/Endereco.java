@@ -110,7 +110,7 @@ public class Endereco extends Modelo {
     }
 
     private static List<Endereco> resultSetToObject(ResultSet resultSet){
-        List<Endereco> cartoes = new ArrayList<>();
+        List<Endereco> enderecos = new ArrayList<>();
 
         try {
             while (resultSet.next()) {
@@ -127,14 +127,14 @@ public class Endereco extends Modelo {
                 String referencia = resultSet.getString("referencia");
                 String logradouro = resultSet.getString("logradouro");
 
-                Endereco cartao = new Endereco((long)id, paciente, cep, numero, complemento, cidade, estado, referencia,  logradouro);
-                cartoes.add(cartao);
+                Endereco endereco = new Endereco((long)id, paciente, cep, numero, complemento, cidade, estado, referencia,  logradouro);
+                enderecos.add(endereco);
             } 
         }
         catch (SQLException e) {
                 e.printStackTrace();
         } 
-        return cartoes;
+        return enderecos;
     }
 
     static List<Endereco> select(String filter){
