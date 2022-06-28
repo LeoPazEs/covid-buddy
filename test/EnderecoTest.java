@@ -63,5 +63,31 @@ public class EnderecoTest {
         Assertions.assertEquals(endereco.getEstado(), result.getString("estado")); 
         Assertions.assertEquals(endereco.getReferencia(), result.getString("referencia")); 
         Assertions.assertEquals(endereco.getLogradouro(), result.getString("logradouro")); 
+    } 
+
+    @Test
+    public void select(){
+        Paciente paciente = new Paciente("529.982.247-25", "12345", "Leonardo Paz Estevam",  LocalDate.of(2001, 4, 5), "(82)99919-2696", "Masculino"); 
+        paciente.save();
+
+        Endereco endereco = new Endereco(paciente, "57051-190", 384, "Ap 1111 Bloco 2", "Maceió", "Alagoas", "Ao lado do marista", "Av Governador");
+        endereco.save();
+
+        Endereco endereco2 = new Endereco(paciente, "57051-190", 384, "Ap 1111 Bloco 2", "Arapiraca", "Alagoas", "Ao lado do marista", "Av Governador");
+        endereco2.save();
+
+        Assertions.assertEquals(2, Endereco.select().size()); 
+
+        Endereco enderecoFromSelect = Endereco.select("cidade = 'Maceió' ").get(0); 
+
+        Assertions.assertEquals(endereco.getId(), enderecoFromSelect.getId());
+        Assertions.assertEquals(endereco.getCep(), enderecoFromSelect.getCep());
+        Assertions.assertEquals(endereco.getNumero(), enderecoFromSelect.getNumero());
+        Assertions.assertEquals(endereco.getComplemento(), enderecoFromSelect.getComplemento());
+        Assertions.assertEquals(endereco.getCidade(), enderecoFromSelect.getCidade()); 
+        Assertions.assertEquals(endereco.getEstado(), enderecoFromSelect.getEstado()); 
+        Assertions.assertEquals(endereco.getReferencia(), enderecoFromSelect.getReferencia()); 
+        Assertions.assertEquals(endereco.getLogradouro(), enderecoFromSelect.getLogradouro()); 
+
     }
 }
