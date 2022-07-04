@@ -6,6 +6,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+// Essa linguagem não permite um abstract static, ou uma interface com um method static para ser implementado na Classe. Então eu não consigo forçar a implementação do select nas classes.
+// https://stackoverflow.com/questions/2689312/is-there-a-way-to-make-sure-classes-implementing-an-interface-implement-static-m
+// Também não consigo saber qual classe que chamou o method static implementado na SuperClasse sem entrar no StackTrace (coisa que ninguém recomenda) 
+// https://stackoverflow.com/questions/18647613/get-caller-class-name-from-inherited-static-method
 
 public abstract class MapeamentoObjetoRelacional {
     private static GerenciadorDeConexao gerenciadorDeConexao;

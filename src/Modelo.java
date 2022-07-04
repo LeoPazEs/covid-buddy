@@ -1,4 +1,4 @@
-public abstract class Modelo extends MapeamentoObjetoRelacional{
+public abstract class Modelo extends MapeamentoObjetoRelacional {
     private long id;
     
     public Modelo(long id) { 
